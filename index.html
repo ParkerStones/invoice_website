@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <title>Web-Invoice</title>
+    </head>
+
+    <body>
+        <div class="invoice_container">
+            <div class="invoice_header">
+                <div class="title_date_time">
+                    <h2 class="title">INVOICE REPORT</h2>
+                    <p id="date_time" class="date_time"></p>
+                </div>
+                <div class="space"></div>
+                <p class="invoice_serial" id="invoice_serial">(Random Serial)</p>
+            </div>
+            <div class="invoice_body">
+                <table class="myTable">
+                    <thead>
+                        <th style="padding-left:12px;">Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price (per item)</th>
+                        <th>Amount</th>
+                        <th style="text-align: right;">Action</th>
+                    </thead>
+
+                    <tbody id="table_body">
+                        <tr class="single_row">
+                            <td><input type="text" placeholder="Enter Product Name" class="product_name"></td>
+                            <td><input type="number" min="0" placeholder="0" name="unit" class="unit" id="unit" onkeyup="getInput()"></td>
+                            <td><input type="number" min="0" placeholder="0" name="price" class="price" id="price" onkeyup="getInput()"></td>
+                            <td><input type="number" placeholder="0" name="amount" class="amount" id="amount" disabled></td>
+                            <td style="text-align: right;"><button type="button" class="deleteBtn">DELETE</button></td>
+                        </tr>
+
+                        <tr style="padding-left: 20px;">
+                            <td class="dashed_add">
+                                <div class="float">
+                                    <a href="" class="float" id="add_row">
+                                        <span class="material_icons plus">add</span>
+                                    </a>
+                                </div>
+                            </td>
+                            <td class="dashed"></td>
+                            <td class="dashed"></td>
+                            <td class="dashed"></td>
+                            <td class="dashed"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <button class="pritnpdf" onclick="window.print()">PRINT PDF</button>
+                <button class="generate" id="generate" onclick="srno();">GENERATE SERIAL No.</button>
+                <div id="sum"><strong>TOTAL AMOUNT:</strong><input type="text1" placeholder="0.00" name="total" class="total" id="total" disabled></div>
+            </div>
+        </div>
+
+        <script src="script.js" async defer></script>
+        <script>
+            // GET CURRENT DATE AND TIME
+            var now = new Date();
+            var date_time = now.toLocaleString();
+            // INSERT DATE and TIME inot HTML
+            document.getElementById("date_time").innerHTML = date_time;
+
+            //Random Serail Number
+            let up = document.getElementById('GFG_UP');
+            let down = document.getElementById('invoice_serial');
+
+            function srno() {
+                let minm = 10000;
+                let maxm = 99999;
+                down.innerHTML = Math.floor(Math.random() * (maxm - minm + 1)) + minm;
+            }
+        </script>
+    </body>
+</html>
