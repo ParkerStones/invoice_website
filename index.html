@@ -13,6 +13,7 @@
                 <div class="title_date_time">
                     <h2 class="title">INVOICE REPORT</h2>
                     <p id="date_time" class="date_time"></p>
+                    <span id="span"></span>
                 </div>
                 <div class="space"></div>
                 <p class="invoice_serial" id="invoice_serial">(Random Serial)</p>
@@ -62,6 +63,20 @@
             // GET CURRENT DATE AND TIME
             var now = new Date();
             var date_time = now.toLocaleString();
+
+            var span = document.getElementById('span');
+
+function time() {
+  var d = new Date();
+  var s = d.getSeconds();
+  var m = d.getMinutes();
+  var h = d.getHours();
+  span.textContent = 
+    ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2) + ":" + ("0" + s).substr(-2);
+}
+
+setInterval(time, 1000);
+            
             // INSERT DATE and TIME inot HTML
             document.getElementById("date_time").innerHTML = date_time;
 
